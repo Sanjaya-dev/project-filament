@@ -9,4 +9,9 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateKonten extends CreateRecord
 {
     protected static string $resource = KontenResource::class;
+
+    public static function getPluralModelLabel(): string
+    {
+        return 'Create Content';
+    }
 }

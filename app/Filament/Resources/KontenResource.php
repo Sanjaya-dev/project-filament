@@ -18,25 +18,37 @@ use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\KontenResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\KontenResource\RelationManagers;
+use Illuminate\Contracts\Support\Htmlable;
 
 class KontenResource extends Resource
 {
     protected static ?string $model = Konten::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
     public static function getNavigationLabel(): string
     {
-        return __('Konten');
+        return 'Content';
     }
 
+
+    public static function getBreadcrumb(): string
+    {
+        return 'Content'; // Mengubah teks breadcrumb
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return 'Content List';
+    }
+   
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Repeater::make('nama')
-                ->label('Nama')
+                ->label('Nama tersangka')
                 ->schema([
                     TextInput::make('value')->label('Nama')
                     ->required()

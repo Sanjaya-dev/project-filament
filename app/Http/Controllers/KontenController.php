@@ -11,20 +11,16 @@ class KontenController extends Controller
 {
     public function index()
     {
-
-       return view('data'); 
+       $dataKasus = Konten::with('jenisKejahatan')->get();
+       return view('data', compact('dataKasus')); 
     }
 
     public function getFilteredData(Request $request)
     {
-       $data = DB::select("
-            SELECT jenis_kejahatan.nama_jenis AS jenis_kejahatan, 
-                   COUNT(konten.id) AS total 
-            FROM konten 
-            JOIN jenis_kejahatan 
-            ON konten.jenis_kejahatan_id = jenis_kejahatan.id 
-            GROUP BY jenis_kejahatan.nama_jenis
-        ");
+       $data = Konten::join('jenis_kejahatan', 'konten.jenis_kejahatan_id', '=', 'jenis_kejahatan.id')
+            ->select('jenis_kejahatan.nama_jenis as jenis_kejahatan', \DB::raw('count(konten.id) as total'))
+            ->groupBy('jenis_kejahatan.nama_jenis')
+            ->get();
 
         return response()->json($data);
     }
