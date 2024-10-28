@@ -10,8 +10,5 @@ class CreateKonten extends CreateRecord
 {
     protected static string $resource = KontenResource::class;
 
-    public static function getPluralModelLabel(): string
-    {
-        return 'Create Content';
-    }
+    protected static ?string $title = 'Create Content';
 }

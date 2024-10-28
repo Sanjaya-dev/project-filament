@@ -10,15 +10,10 @@ class ListKontens extends ListRecords
 {
     protected static string $resource = KontenResource::class;
 
-    protected function getCreateButtonLabel(): string
-    {
-        return 'Add New Content'; // Ganti dengan teks yang Anda inginkan
-    }
-
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make(),
+            Actions\CreateAction::make()->label('Add New Content')
         ];
     }
 }

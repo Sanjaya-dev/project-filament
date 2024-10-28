@@ -12,7 +12,9 @@ class KontenController extends Controller
     public function index()
     {
        $dataKasus = Konten::with('jenisKejahatan')->get();
-       return view('data', compact('dataKasus')); 
+       $totalKasusPraPenuntutan = Konten::where('status', 'pra-penuntutan')->count();
+       $totalKasusPenuntutan = Konten::where('status', 'penuntutan')->count();
+       return view('data', compact('dataKasus','totalKasusPraPenuntutan','totalKasusPenuntutan')); 
     }
 
     public function getFilteredData(Request $request)

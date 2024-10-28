@@ -21,12 +21,30 @@ class JenisKejahatanResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+     public static function getNavigationLabel(): string
+    {
+        return 'Type Of Crime';
+    }
+
+     public static function getBreadcrumb(): string
+    {
+        return 'Type Of Crime'; // Mengubah teks breadcrumb
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return 'list of crimes';
+    }
+    
+    // protected static string $slug = 'content';
+    protected static ?string $slug = 'type-of-crime';
+
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 TextInput::make('nama_jenis')
-                ->label('Nama Jenis Kejahatan')
+                ->label('Crime type names')
                 ->required(),
             ]);
     }
@@ -36,7 +54,7 @@ class JenisKejahatanResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('nama_jenis')
-                ->label('Nama Jenis Kejahatan'),
+                ->label('Crime name'),
             ])
             ->filters([
                 //

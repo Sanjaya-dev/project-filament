@@ -9,4 +9,6 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateJenisKejahatan extends CreateRecord
 {
     protected static string $resource = JenisKejahatanResource::class;
+
+    protected static ?string $title = 'Create Type Crime';
 }
