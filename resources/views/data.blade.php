@@ -158,7 +158,7 @@
         async function renderTotalPerKasusChart() {
             try {
                 // Ambil data dari backend
-                const response = await fetch('http://filament-2.test:800/api/total-per-kasus');
+                const response = await fetch('/api/total-kasus');
                 const data = await response.json();
     
                 // Ekstrak label dan data untuk grafik lingkaran
